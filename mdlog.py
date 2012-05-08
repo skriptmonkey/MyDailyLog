@@ -53,7 +53,7 @@ class MyDailyLog:
 
     def getLogFile(self):
         self.rightNow = datetime.datetime.now()
-        return self.getLogDir() + "/" + str(self.rightNow.day) + ".txt"
+        return self.getLogDir() + "/%s.txt" % (self.rightNow.day)
 
     def checkDir(self, dirPath):
         if not os.path.isdir(dirPath):

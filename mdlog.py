@@ -19,6 +19,7 @@ class MyDailyLog:
         self.MDLFile = ""
 
     def getTimeString(self):
+        '''Returns a time string in the HH:MM:SS AM/PM format.'''
         AmPm = "AM"
         self.rightNow = datetime.datetime.now()
         if self.rightNow.hour > 12:
@@ -38,6 +39,7 @@ class MyDailyLog:
         return mHour + ":" + mMinute + ":" + mSecond + " " + AmPm
 
     def getDateString(self):
+        '''Returns a string <year>/<month.> '''
         self.rightNow = datetime.datetime.now()
         mYear = str(self.rightNow.year)
         theMonths = ["January", "February", "March", "April", "May", "June",\
@@ -49,13 +51,17 @@ class MyDailyLog:
         return mYear + "/" + mMonth
 
     def getLogDir(self):
+        '''Returns a string for the MyDailyLog home directory.'''
         return self.MDLFolder + "/" + self.getDateString()
 
     def getLogFile(self):
+        '''Returns a string with the full log files name.'''
         self.rightNow = datetime.datetime.now()
         return self.getLogDir() + "/%s.txt" % (self.rightNow.day)
 
     def checkDir(self, dirPath):
+        '''Checks if a given directory (dirPath) exists, 
+           if it doesn it is created'''
         if not os.path.isdir(dirPath):
             os.makedirs(dirPath)
 

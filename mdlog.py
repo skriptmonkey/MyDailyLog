@@ -25,6 +25,8 @@ class MyDailyLog:
         if self.rightNow.hour > 12:
             AmPm = "PM"
             mHour = str(self.rightNow.hour - 12)
+        else:
+            mHour = str(self.rightNow.hour)
         if mHour < 10:
             mhour = "0" + str(mHour)
         if self.rightNow.minute < 10:
@@ -66,7 +68,18 @@ class MyDailyLog:
             os.makedirs(dirPath)
 
     def newEntry(self, mEntry):
-        pass
+        self.checkDir(self.getLogDir())
+        if os.path.isfile(self.getLogFile()):
+            mLogFile = open(self.getLogFile(), 'a')
+            mLogFile.write(self.getTimeString() + " " + mEntry + "\n")
+            mLogFile.close()
+        else:
+            self.rightNow = datetime.datetime.now()
+            mLogFile = open(self.getLogFile(), 'a')
+            mLogFile.write(self.getDateString() + "/%s" % (self.rightNow.day))
+            mLogFile.write("\n\n")
+            mLogFile.write(self.getTimeString() + " " + mEntry + "\n")
+            mLogFile.close()
 
 
 def main():

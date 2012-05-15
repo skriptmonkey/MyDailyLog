@@ -69,18 +69,9 @@ class MyDailyLog:
 
     def newEntry(self, mEntry):
         self.checkDir(self.getLogDir())
-        if os.path.isfile(self.getLogFile()):
-            mLogFile = open(self.getLogFile(), 'a')
-            mLogFile.write(self.getTimeString() + " " + mEntry + "\n")
-            mLogFile.close()
-        else:
-            self.rightNow = datetime.datetime.now()
-            mLogFile = open(self.getLogFile(), 'a')
-            mLogFile.write(self.getDateString() + "/%s" % (self.rightNow.day))
-            mLogFile.write("\n\n")
-            mLogFile.write(self.getTimeString() + " " + mEntry + "\n")
-            mLogFile.close()
-
+        mLogFile = open(self.getLogFile(), 'a')
+        mLogFile.write(self.getTimeString() + " " + mEntry + "\n")
+        mLogFile.close()
 
 def main():
     pass
